@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+	<data>
+
+		<record model="ir.ui.view" id="partner_view_password_manager">
+			<field name="name">partner.view.password.manager</field>
+			<field name="model">res.partner</field>
+			<field name="inherit_id" ref="base.view_partner_form" />
+			<field name="groups_id" eval="[(4, ref('partner_password_manager.group_partner_psw_user'))]"/>
+			<field name="arch" type="xml">
+				<xpath expr="//notebook" position="inside">
+					<page name='login_credential' string="Login Credentials">
+						<field name="login_credentials" widget="section_and_note_one2many" mode="tree">
+							<form>
+								<group>
+									<group>
+										<field name="name"/>
+										<field name="note"/>
+										<field name="allowed_users" widget="many2many_tags" options="{'no_create': True}" optional="show" groups="partner_password_manager.group_partner_psw_manager"/>
+									</group>
+									<group>
+										<field name="login_url" widget="url"/>
+										<field name="login_psw"/>
+										<field name="psw_key"/>
+									</group>
+								</group>
+							</form>
+							<tree string="Login Credentials" editable="bottom">
+								<field name="sequence" widget="handle"/>
+								<field name="name"/>
+								<field name="login_url" widget="url" placeholder="e.g. https://www.odoo.com"/>
+								<field name="login_username"/>
+								<field name="login_psw" password="True"/>
+								<field name="psw_key"/>
+								<field name="note"/>
+								<field name="allowed_users" widget="many2many_tags" options="{'no_create': True}" optional="show" groups="partner_password_manager.group_partner_psw_manager"/>
+							</tree>
+						</field>
+					</page>
+				</xpath>
+			</field>
+		</record>
+
+	</data>
+</odoo>
