@@ -1,0 +1,2 @@
+# gitamz
+amz
